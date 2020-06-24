@@ -1,0 +1,8 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Catbus Network-Presence
+Upstream-Contact: Ethel Morgan <eth@ethulhu.co.uk>
+Source: https://ethulhu.co.uk/catbus
+
+Files: go.sum
+Copyright: n/a
+License: CC0-1.0
