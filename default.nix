@@ -10,7 +10,7 @@ buildGoModule rec {
   version = "latest";
   goPackagePath = "go.eth.moe/catbus-networkpresence";
 
-  modSha256 = "1zs9i676vd2wi4v59kwj5cqm373hk41kn8jim3jkrx2pl1cd2hi4";
+  modSha256 = "1j2blrpg0rcfjzy0fj29v0n410w5kyxb82cajgfmxlijnbdns283";
 
   buildInputs = [
     arp-scan
@@ -20,7 +20,8 @@ buildGoModule rec {
   src = ./.;
 
   postInstall = ''
-    wrapProgram $out/bin/arp-scan --set PATH ${lib.makeBinPath [ arp-scan ] }
+    wrapProgram $out/bin/arp-scan                        --set PATH ${lib.makeBinPath [ arp-scan ] }
+    wrapProgram $out/bin/catbus-observer-networkpresence --set PATH ${lib.makeBinPath [ arp-scan ] }
   '';
 
   meta = {
