@@ -8,6 +8,7 @@ package main
 import (
 	"context"
 	"net"
+	"path"
 	"time"
 
 	"go.eth.moe/catbus"
@@ -60,25 +61,36 @@ func main() {
 		}
 		log.Debug("scanned MACs")
 
-		macPresent := map[string]bool{}
+		present := map[string]bool{}
 		for _, mac := range macs {
-			macPresent[mac.String()] = true
+			present[mac.String()] = true
 		}
 
 		for topic, mac := range config.MACsByTopic {
-			power := "off"
-			if macPresent[mac.String()] {
-				power = "on"
-			}
+			presence := presenceString(topic, present[mac.String()])
 
-			if err := catbus.Publish(topic, retain, power); err != nil {
+			if err := catbus.Publish(topic, retain, presence); err != nil {
 				log := log.WithError(err)
 				log.AddField("topic", topic)
-				log.AddField("payload", power)
+				log.AddField("payload", presence)
 				log.Error("could not publish MAC")
 				continue
 			}
 		}
 		log.Debug("published MACs")
+	}
+}
+
+func presenceString(topic string, present bool) string {
+	control := path.Base(topic)
+	switch {
+	case control == "power" && present:
+		return "on"
+	case control == "power":
+		return "off"
+	case present:
+		return "yes"
+	default:
+		return "no"
 	}
 }
