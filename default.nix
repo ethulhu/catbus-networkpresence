@@ -10,7 +10,7 @@ buildGoModule rec {
   version = "latest";
   goPackagePath = "go.eth.moe/catbus-networkpresence";
 
-  modSha256 = "1j2blrpg0rcfjzy0fj29v0n410w5kyxb82cajgfmxlijnbdns283";
+  modSha256 = "19hyb5h0qxfjkmissxvhcrr7xdd66iss6v1w0nmz8zag7q1qk34r";
 
   buildInputs = [
     arp-scan
