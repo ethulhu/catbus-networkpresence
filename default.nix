@@ -21,7 +21,7 @@ buildGoModule rec {
 
   postInstall = ''
     wrapProgram $out/bin/arp-scan                        --set PATH ${lib.makeBinPath [ arp-scan ] }
-    wrapProgram $out/bin/catbus-observer-networkpresence --set PATH ${lib.makeBinPath [ arp-scan ] }
+    wrapProgram $out/bin/catbus-networkpresence-observer --set PATH ${lib.makeBinPath [ arp-scan ] }
   '';
 
   meta = {
