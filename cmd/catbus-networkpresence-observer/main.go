@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-// Binary catbus-observer-networkpresence detects devices on the network for Catbus.
+// Binary catbus-networkpresence-observer detects devices on the network for Catbus.
 package main
 
 import (
